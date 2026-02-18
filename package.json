@@ -1,0 +1,25 @@
+{
+  "name": "drw-directory-jumper",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "drw": "./dist/drw"
+  },
+  "scripts": {
+    "build": "bun build --compile --outfile=./dist/drw src/index.ts",
+    "prepublishOnly": "bun run build",
+    "test": "bun test"
+  },
+  "files": ["dist"],
+  "keywords": ["cli", "directory", "navigation", "autocomplete", "tab-completion"],
+  "author": "Martin Babič <martin.babic@kralicinora.cz>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbabic84/drw.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mbabic84/drw/issues"
+  },
+  "homepage": "https://github.com/mbabic84/drw#readme"
+}

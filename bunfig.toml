@@ -1,0 +1,5 @@
+[test]
+options.timeout = 5000
+options.failFast = false
+options.reporter = "html"
+options.coverage = true
