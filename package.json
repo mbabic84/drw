@@ -8,7 +8,11 @@
   "scripts": {
     "build": "bun build --compile --outfile=./dist/drw src/index.ts",
     "prepublishOnly": "bun run build",
-    "test": "bun test"
+    "test": "bun test",
+    "test:node": "node --test dist/drw"
+  },
+  "engines": {
+    "node": "lts/*"
   },
   "files": [
     "dist"
