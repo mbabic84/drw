@@ -21,8 +21,8 @@ test("CLI: --complete outputs space-separated names", async () => {
     const config = await getConfig()
     const { scan } = await import("../src/core/scanner.ts")
     const result = await scan(config.folders)
-    const output = [...result.shortcuts.keys()].join(" ")
-    expect(output).toBe("env-foo env-bar")
+    const output = [...result.shortcuts.keys()].sort().join(" ")
+    expect(output).toBe("env-bar env-foo")
   } finally {
     if (origDrwConfig) process.env.DRW_CONFIG = origDrwConfig
     else delete process.env.DRW_CONFIG
