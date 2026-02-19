@@ -10,3 +10,6 @@ coverage/
 .kilocode/
 opencode.json
 AGENTS.md
+# Deploy keys
+deploy_key
+deploy_key.pub
