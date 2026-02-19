@@ -1,3 +1,10 @@
+## [0.5.2](https://github.com/mbabic84/drw/compare/v0.5.1...v0.5.2) (2026-02-19)
+
+
+### Bug Fixes
+
+* improve bash tab completion behavior ([402b52e](https://github.com/mbabic84/drw/commit/402b52ed8787ba58bb549f2cf1be240a3c7fc0f6))
+
 ## [0.5.1](https://github.com/mbabic84/drw/compare/v0.5.0...v0.5.1) (2026-02-19)
 
 
