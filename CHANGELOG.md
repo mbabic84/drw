@@ -1,3 +1,28 @@
+# [0.5.0](https://github.com/mbabic84/drw/compare/v0.4.1...v0.5.0) (2026-02-19)
+
+
+### Bug Fixes
+
+* add semantic-release plugins as dev dependencies ([3f58be1](https://github.com/mbabic84/drw/commit/3f58be1d0cdd4769c85700727ca958b6c6b3bd59))
+* change trigger to push for semantic-release ([60b69a4](https://github.com/mbabic84/drw/commit/60b69a420e864641e28926d34f00250723b0ab0d))
+* correct ssh-agent action name ([44f016b](https://github.com/mbabic84/drw/commit/44f016b6c7f27b44bb141868b9467004b8e6b748))
+* disable github plugin comments and labels ([bfc8e0c](https://github.com/mbabic84/drw/commit/bfc8e0c9e0f609f23e5f3435df704427667193ab))
+* dynamically fetch last release SHA for release-please ([82e682a](https://github.com/mbabic84/drw/commit/82e682ace52ea1dcdea1f0fb7ea7a4fc12372f35))
+* improve workflow reliability for semantic-release ([c5db4b9](https://github.com/mbabic84/drw/commit/c5db4b9d6f7de6bfe6ac23054d98e544bf6ce7ba))
+* read version from package.json instead of hardcoded value ([205b6b9](https://github.com/mbabic84/drw/commit/205b6b9c576a9882862c43e98ed061c0d0b36d48))
+* remove package-name from config and use registries input ([d6f717d](https://github.com/mbabic84/drw/commit/d6f717d3fce4944e663168a99521f2d9deb3ed9e))
+* use correct tag_name output from release-please and update action versions ([aa7e580](https://github.com/mbabic84/drw/commit/aa7e58079b6f20179ee696e5cccde89da512bd2b))
+* use correct tag_name output from release-please and update action versions ([0c5d248](https://github.com/mbabic84/drw/commit/0c5d248bf11b223af9068cd22719a1580857d01b))
+* use manifest config for release-please to track versions ([831ef4c](https://github.com/mbabic84/drw/commit/831ef4c15416e0af99a277659ab0003252d33bb3))
+* use npm trusted publishing (OIDC) instead of NPM_TOKEN ([de69c1f](https://github.com/mbabic84/drw/commit/de69c1f5802c0b0a85d99bcd3a6eedef7bde2b0f))
+* use SSH deploy key for git push to bypass branch protection ([470537a](https://github.com/mbabic84/drw/commit/470537af6711610ec0e34f8acc0e6167a6325077))
+* use SSH URL for repository to work with deploy key ([c11f670](https://github.com/mbabic84/drw/commit/c11f6701a79319c4a006000d462b802187528b61))
+
+
+### Features
+
+* replace release-please with semantic-release ([2289393](https://github.com/mbabic84/drw/commit/2289393bdd574df7e4c6feb4407c76fa883a10e6))
+
 # Changelog
 
 ## [0.4.1](https://github.com/mbabic84/drw/compare/v0.4.0...v0.4.1) (2026-02-19)
