@@ -1,3 +1,10 @@
+## [0.5.1](https://github.com/mbabic84/drw/compare/v0.5.0...v0.5.1) (2026-02-19)
+
+
+### Bug Fixes
+
+* replace commander with custom CLI parser ([ea0f67e](https://github.com/mbabic84/drw/commit/ea0f67ef1cb98fc296d15cd476a1c225111a8708))
+
 # [0.5.0](https://github.com/mbabic84/drw/compare/v0.4.1...v0.5.0) (2026-02-19)
 
 
