@@ -20,7 +20,10 @@
             "path": "dist/drw",
             "label": "Binary"
           }
-        ]
+        ],
+        "failComment": false,
+        "successComment": false,
+        "releasedLabels": false
       }
     ],
     [
