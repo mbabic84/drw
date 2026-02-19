@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/mbabic84/drw/compare/v0.3.0...v0.4.0) (2026-02-19)
+
+
+### Features
+
+* integrate npm publish and binary upload into release-please workflow ([ae24daa](https://github.com/mbabic84/drw/commit/ae24daae7370133425a2db9539d6cac08f230c75))
+* integrate npm publish and binary upload into release-please workflow ([dddbc95](https://github.com/mbabic84/drw/commit/dddbc9533b77d430d1975f662f219f2001f7ef11))
+
 ## [0.3.0](https://github.com/mbabic84/drw/compare/v0.2.0...v0.3.0) (2026-02-19)
 
 
