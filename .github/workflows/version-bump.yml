@@ -14,7 +14,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
@@ -28,9 +28,10 @@ jobs:
       new_version: ${{ steps.version-bump.outputs.new_version }}
       has_changes: ${{ steps.version-bump.outputs.has_changes }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          fetch-tags: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Determine version bump
@@ -85,10 +86,14 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add package.json
-          git commit -m "chore: bump version to $(node -p \"require('./package.json').version\")"
+          git diff --staged --quiet || git commit -m "chore: bump version to $(node -p \"require('./package.json').version\")"
 
       - name: Push changes and tag
         if: steps.version-bump.outputs.has_changes == 'true'
         run: |
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
           git push origin main
           git push origin v$(node -p "require('./package.json').version")
