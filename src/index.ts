@@ -1,19 +1,5 @@
 #!/usr/bin/env -S bun run
 
-/**
- * drw (Directory Warp) - Jump to preconfigured directories
- * 
- * A CLI tool that allows quick navigation to frequently-used directories
- * by defining shortcuts. Supports tab completion and shell integration.
- * 
- * @module index
- * @author 
- * @license MIT
- */
-
-import { Command } from "bun:commander"
-import { readFileSync, existsSync } from "node:fs"
-import { join, dirname } from "node:path"
 import {
   handleAdd,
   handleRemove,
@@ -24,119 +10,167 @@ import {
   handleJump,
 } from "./commands/index.ts"
 
-function getVersion(): string {
-  const locations = [
-    join(import.meta.dir, "../package.json"),
-    join(dirname(process.argv[0]), "package.json"),
-  ]
-  for (const loc of locations) {
-    if (existsSync(loc)) {
-      return JSON.parse(readFileSync(loc, "utf-8")).version
+const VERSION = "0.5.0"
+
+interface ParsedArgs {
+  options: Record<string, unknown>
+  positional: string[]
+}
+
+function parseArgs(): ParsedArgs {
+  const options: Record<string, unknown> = {}
+  const positional: string[] = []
+  const args = process.argv.slice(2)
+
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i]
+    
+    if (arg === "--help" || arg === "-h") {
+      console.log(`drw - Directory Warp (v${VERSION})
+Jump to preconfigured directories
+
+USAGE:
+  drw [OPTIONS] [SHORTCUT]
+
+OPTIONS:
+  --complete [PREFIX]  Output space-separated list of shortcut names
+  --list               List all available shortcuts
+  --info [NAME]        Show all paths for a shortcut
+  --install            Install shell integration to .bashrc/.zshrc
+  --refresh            Force rebuild of cache
+  --add [PATH]         Add a folder to config (default: current directory)
+  --remove [PATH]      Remove a folder from config
+  --version, -v        Show version
+  --help, -h           Show this help
+
+EXAMPLES:
+  drw myproject        Jump to directory with shortcut "myproject"
+  drw --list           List all shortcuts
+  drw --add            Add current directory as shortcut`)
+      process.exit(0)
     }
+    
+    if (arg === "--version" || arg === "-v") {
+      console.log(VERSION)
+      process.exit(0)
+    }
+    
+    if (arg === "--complete") {
+      options.complete = args[i + 1] || true
+      i++
+      continue
+    }
+    
+    if (arg.startsWith("--complete=")) {
+      options.complete = arg.slice("--complete=".length) || true
+      continue
+    }
+    
+    if (arg === "--list") {
+      options.list = true
+      continue
+    }
+    
+    if (arg === "--info") {
+      options.info = args[i + 1] || true
+      i++
+      continue
+    }
+    
+    if (arg.startsWith("--info=")) {
+      options.info = arg.slice("--info=".length) || true
+      continue
+    }
+    
+    if (arg === "--install") {
+      options.install = true
+      continue
+    }
+    
+    if (arg === "--refresh") {
+      options.refresh = true
+      continue
+    }
+    
+    if (arg === "--add") {
+      options.add = args[i + 1] || true
+      i++
+      continue
+    }
+    
+    if (arg.startsWith("--add=")) {
+      options.add = arg.slice("--add=".length) || true
+      continue
+    }
+    
+    if (arg === "--remove") {
+      options.remove = args[i + 1] || true
+      i++
+      continue
+    }
+    
+    if (arg.startsWith("--remove=")) {
+      options.remove = arg.slice("--remove=".length) || true
+      continue
+    }
+    
+    if (arg.startsWith("--")) {
+      console.error(`Unknown option: ${arg}`)
+      process.exit(1)
+    }
+    
+    positional.push(arg)
   }
-  return "0.0.0"
+
+  return { options, positional }
 }
 
-const VERSION = getVersion()
-
-/**
- * Sets up and configures the CLI program.
- * 
- * @returns Configured Commander program instance
- */
-function setupProgram(): Command {
-  const program = new Command()
-
-  program
-    .name("drw")
-    .description("Directory Warp - jump to preconfigured directories")
-    .version(VERSION)
-    .allowUnknownOption()
-
-  // Define CLI options
-  program
-    .option("--complete [prefix]", "Output space-separated list of shortcut names")
-    .option("--list", "List all available shortcuts")
-    .option("--info [name]", "Show all paths for a shortcut (useful for duplicates)")
-    .option("--install", "Install shell integration to .bashrc/.zshrc")
-    .option("--refresh", "Force rebuild of cache")
-    .option("--add [path]", "Add a folder to config (default: current directory)")
-    .option("--remove [path]", "Remove a folder from config")
-    .argument("[name]", "Shortcut name to resolve")
-
-  return program
-}
-
-/**
- * Routes the command to the appropriate handler based on options.
- * 
- * @param options - Parsed command options
- * @param name - Positional argument (shortcut name)
- */
 async function routeCommand(
   options: Record<string, unknown>,
   name?: string
 ): Promise<void> {
-  // Handle --add
   if (options.add !== undefined) {
     await handleAdd(options.add as string | undefined)
     return
   }
 
-  // Handle --remove
   if (options.remove !== undefined) {
     await handleRemove(options.remove as string | undefined)
     return
   }
 
-  // Handle --complete
   if (options.complete !== undefined) {
     await handleComplete(options.complete as string | true)
     return
   }
 
-  // Handle --list
   if (options.list) {
     await handleList()
     return
   }
 
-  // Handle --info
   if (options.info !== undefined) {
     await handleInfo(options.info as string | undefined)
     return
   }
 
-  // Handle --install
   if (options.install) {
     await handleInstall()
     return
   }
 
-  // Handle --refresh
   if (options.refresh) {
     console.log("Cache refresh not implemented yet - scans are instantaneous for small sets")
     process.exit(0)
     return
   }
 
-  // Default: jump to shortcut
   await handleJump(name)
 }
 
-/**
- * Main application entry point.
- */
 async function main(): Promise<void> {
-  const program = setupProgram()
-
-  program.action(async (name, options) => {
-    const opts = program.opts()
-    await routeCommand(opts, name)
-  })
-
-  await program.parse()
+  const { options, positional } = parseArgs()
+  await routeCommand(options, positional[0])
 }
 
-// Run the application
 main().catch(console.error)
