@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0](https://github.com/mbabic84/drw/compare/v0.2.0...v0.3.0) (2026-02-19)
+
+
+### Features
+
+* move npm publish to release workflow ([272b591](https://github.com/mbabic84/drw/commit/272b591d0c16ce5e88e0589d301336ca62f597bb))
+* move npm publish to release workflow for reliable publishing ([eb6499b](https://github.com/mbabic84/drw/commit/eb6499b38166099bf24285f7505a1867bb6c7dc6))
+
 ## [0.2.0](https://github.com/mbabic84/drw/compare/v0.1.0...v0.2.0) (2026-02-19)
 
 
