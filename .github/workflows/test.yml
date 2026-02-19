@@ -1,18 +1,15 @@
-name: Publish to NPM
+name: Tests
 
 on:
-  release:
-    types: [published]
-  tag:
-    types: [created]
-  workflow_dispatch:
-
-permissions:
-  id-token: write
-  contents: read
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  publish:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,9 +24,3 @@ jobs:
 
       - name: Run tests
         run: bun test
-
-      - name: Build
-        run: bun run build
-
-      - name: Publish to NPM
-        run: npm publish --provenance --access public
