@@ -12,6 +12,8 @@
  */
 
 import { Command } from "bun:commander"
+import { readFileSync, existsSync } from "node:fs"
+import { join, dirname } from "node:path"
 import {
   handleAdd,
   handleRemove,
@@ -22,10 +24,20 @@ import {
   handleJump,
 } from "./commands/index.ts"
 
-/**
- * Program version
- */
-const VERSION = "0.1.0"
+function getVersion(): string {
+  const locations = [
+    join(import.meta.dir, "../package.json"),
+    join(dirname(process.argv[0]), "package.json"),
+  ]
+  for (const loc of locations) {
+    if (existsSync(loc)) {
+      return JSON.parse(readFileSync(loc, "utf-8")).version
+    }
+  }
+  return "0.0.0"
+}
+
+const VERSION = getVersion()
 
 /**
  * Sets up and configures the CLI program.
