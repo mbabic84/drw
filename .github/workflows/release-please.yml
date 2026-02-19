@@ -35,20 +35,13 @@ jobs:
       - name: Build
         run: bun run build
 
-      - name: Get latest release tag SHA
-        id: last-release
-        run: |
-          git fetch --tags
-          LAST_TAG=$(git describe --tags --abbrev=0)
-          echo "sha=$(git rev-list -n 1 $LAST_TAG)" >> $GITHUB_OUTPUT
-
       - name: Run Release Please
         id: release-please
         uses: googleapis/release-please-action@v4
         with:
-          release-type: node
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
           skip-github-pull-request: true
-          last-release-sha: ${{ steps.last-release.outputs.sha }}
 
       - name: Publish to NPM
         if: ${{ steps.release-please.outputs.release_created == 'true' }}
