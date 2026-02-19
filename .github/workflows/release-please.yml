@@ -15,7 +15,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -33,18 +33,26 @@ jobs:
       - name: Build
         run: bun run build
 
+      - name: Setup Node.js LTS
+        uses: actions/setup-node@v6
+        with:
+          node-version: 'lts/*'
+
+      - name: Test with Node.js LTS
+        run: bun run test:node
+
       - name: Run Release Please
         id: release-please
         uses: googleapis/release-please-action@v4
         with:
           release-type: node
-          skip-pull-request: true
+          skip-github-pull-request: true
 
       - name: Setup Node.js for npm
         if: ${{ steps.release-please.outputs.release_created == 'true' }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: 'lts/*'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Publish to NPM
@@ -57,7 +65,7 @@ jobs:
         if: ${{ steps.release-please.outputs.release_created == 'true' }}
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.release-please.outputs.tag }}
+          tag_name: ${{ steps.release-please.outputs.tag_name }}
           files: dist/drw
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
