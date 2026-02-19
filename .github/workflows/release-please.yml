@@ -33,11 +33,12 @@ jobs:
       - name: Build
         run: bun run build
 
-      - name: Release Please
+      - name: Run Release Please
         id: release-please
         uses: googleapis/release-please-action@v4
         with:
           release-type: node
+          skip-pull-request: true
 
       - name: Setup Node.js for npm
         if: ${{ steps.release-please.outputs.release_created == 'true' }}
@@ -56,7 +57,7 @@ jobs:
         if: ${{ steps.release-please.outputs.release_created == 'true' }}
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.release-please.outputs.release_tag }}
+          tag_name: ${{ steps.release-please.outputs.tag }}
           files: dist/drw
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
