@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1](https://github.com/mbabic84/drw/compare/v0.4.0...v0.4.1) (2026-02-19)
+
+
+### Bug Fixes
+
+* skip pull request in release-please and fix tag output ([e163c30](https://github.com/mbabic84/drw/commit/e163c30dfec8f6e853ca5f4277a82189325f2bf7))
+* skip pull request in release-please and fix tag output ([78da39c](https://github.com/mbabic84/drw/commit/78da39ca637c192894ae0ee998e4b424c57ddb47))
+
 ## [0.4.0](https://github.com/mbabic84/drw/compare/v0.3.0...v0.4.0) (2026-02-19)
 
 
