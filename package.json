@@ -7,6 +7,7 @@
   },
   "scripts": {
     "build": "bun build --compile --outfile=./dist/drw src/index.ts",
+    "postinstall": "bun build --compile --outfile=./dist/drw src/index.ts || npx -y bun@latest build --compile --outfile=./dist/drw src/index.ts",
     "prepublishOnly": "bun run build",
     "test": "bun test",
     "test:node": "node --test dist/drw"
@@ -15,6 +16,7 @@
     "node": "lts/*"
   },
   "files": [
+    "src",
     "dist"
   ],
   "keywords": [
