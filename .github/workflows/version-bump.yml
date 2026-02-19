@@ -11,6 +11,8 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
@@ -34,16 +36,13 @@ jobs:
       - name: Determine version bump
         id: version-bump
         run: |
-          # Get the last tag
           LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
           echo "Last tag: $LAST_TAG"
 
-          # Get commit messages since last tag
           COMMITS=$(git log $LAST_TAG..HEAD --pretty=format:"%s" 2>/dev/null || git log --pretty=format:"%s" -n 50)
           echo "Commits since last tag:"
           echo "$COMMITS"
 
-          # Check if there are any commits since last tag
           if [ "$LAST_TAG" = "v0.0.0" ] || ! git log $LAST_TAG..HEAD --quiet 2>/dev/null; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "new_version=$LAST_TAG" >> $GITHUB_OUTPUT
@@ -51,8 +50,6 @@ jobs:
             exit 0
           fi
 
-          # Determine bump type based on tags in commit messages
-          # Priority: #major > #minor > #patch > #none
           BUMP_TYPE="none"
           
           if echo "$COMMITS" | grep -qE "#major"; then
