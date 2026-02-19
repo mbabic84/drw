@@ -3,8 +3,9 @@ name: Publish to NPM
 on:
   release:
     types: [published]
-  tag:
-    types: [created]
+  push:
+    tags:
+      - 'v*'
   workflow_dispatch:
 
 permissions:
