@@ -1,6 +1,6 @@
 {
   "name": "drw-directory-jumper",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "bin": {
     "drw": "./dist/drw"
@@ -10,8 +10,16 @@
     "prepublishOnly": "bun run build",
     "test": "bun test"
   },
-  "files": ["dist"],
-  "keywords": ["cli", "directory", "navigation", "autocomplete", "tab-completion"],
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "cli",
+    "directory",
+    "navigation",
+    "autocomplete",
+    "tab-completion"
+  ],
   "author": "Martin Babič <martin.babic@kralicinora.cz>",
   "license": "MIT",
   "repository": {
