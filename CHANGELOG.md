@@ -1,3 +1,10 @@
+## [0.6.2](https://github.com/mbabic84/drw/compare/v0.6.1...v0.6.2) (2026-02-20)
+
+
+### Bug Fixes
+
+* use parent directory of bin for src path ([335c711](https://github.com/mbabic84/drw/commit/335c7112a0a4474b539c5b9e1b6df06133caf66d))
+
 ## [0.6.1](https://github.com/mbabic84/drw/compare/v0.6.0...v0.6.1) (2026-02-20)
 
 
