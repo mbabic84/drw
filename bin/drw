@@ -2,8 +2,8 @@
 # Runtime detection wrapper script
 # Supports both bun and node runtimes
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-SRC_PATH="$SCRIPT_DIR/src/index.ts"
+SCRIPT_PATH="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+SRC_PATH="$SCRIPT_PATH/src/index.ts"
 
 if command -v bun >/dev/null 2>&1; then
   exec bun "$SRC_PATH" "$@"
