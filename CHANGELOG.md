@@ -1,3 +1,10 @@
+## [0.6.1](https://github.com/mbabic84/drw/compare/v0.6.0...v0.6.1) (2026-02-20)
+
+
+### Bug Fixes
+
+* resolve symlink in wrapper script for global installs ([b2caeb4](https://github.com/mbabic84/drw/commit/b2caeb489d1a6d17801b49513c93b417fe2ad37c))
+
 # [0.6.0](https://github.com/mbabic84/drw/compare/v0.5.3...v0.6.0) (2026-02-20)
 
 
