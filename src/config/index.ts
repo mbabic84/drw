@@ -7,9 +7,9 @@
  * @module config
  */
 
-import { mkdir, writeFile } from "fs/promises"
+import { mkdir, readFile, writeFile } from "fs/promises"
 import { dirname } from "path"
-import { accessSync } from "fs"
+import { access } from "fs/promises"
 import { resolveConfigPaths, getConfigPath } from "./paths.ts"
 import type { Config } from "../core/types.ts"
 
@@ -38,12 +38,10 @@ export async function getConfig(): Promise<Config> {
 
   for (const path of configPaths) {
     try {
-      if (await Bun.file(path).exists()) {
-        return await loadConfigFile(path)
-      }
-    } catch (err) {
-      console.error(`Error loading config from ${path}:`, err)
-      process.exit(1)
+      await access(path)
+      return await loadConfigFile(path)
+    } catch {
+      // File doesn't exist, try next path
     }
   }
 
@@ -59,7 +57,7 @@ export async function getConfig(): Promise<Config> {
  * @throws Error if config is invalid
  */
 async function loadConfigFile(path: string): Promise<Config> {
-  const content = await Bun.file(path).text()
+  const content = await readFile(path, "utf-8")
   const config = JSON.parse(content) as Config
   
   if (!Array.isArray(config.folders)) {
@@ -111,10 +109,10 @@ export async function saveConfig(config: Config): Promise<void> {
  * @param folders - Array of folder paths to validate
  * @throws Error if any folder does not exist
  */
-export function validatePaths(folders: string[]): void {
+export async function validatePaths(folders: string[]): Promise<void> {
   for (const folder of folders) {
     try {
-      accessSync(folder)
+      await access(folder)
     } catch {
       throw new Error(`Configured folder does not exist: ${folder}`)
     }
