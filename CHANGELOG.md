@@ -1,3 +1,10 @@
+# [0.6.0](https://github.com/mbabic84/drw/compare/v0.5.3...v0.6.0) (2026-02-20)
+
+
+### Features
+
+* use source-based CLI with runtime detection wrapper ([7971270](https://github.com/mbabic84/drw/commit/7971270ef4d7a1f60de5114b316c7b37ad0bbacf))
+
 ## [0.5.3](https://github.com/mbabic84/drw/compare/v0.5.2...v0.5.3) (2026-02-20)
 
 
