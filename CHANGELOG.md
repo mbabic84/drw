@@ -1,3 +1,10 @@
+## [0.5.3](https://github.com/mbabic84/drw/compare/v0.5.2...v0.5.3) (2026-02-20)
+
+
+### Bug Fixes
+
+* replace Bun-specific APIs with Node.js standard APIs ([6bf9f85](https://github.com/mbabic84/drw/commit/6bf9f85e0a109ba94687349be3ede78d1068e9aa))
+
 ## [0.5.2](https://github.com/mbabic84/drw/compare/v0.5.1...v0.5.2) (2026-02-19)
 
 
