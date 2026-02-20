@@ -7,7 +7,7 @@
  * @module config/usage
  */
 
-import { mkdir, writeFile } from "fs/promises"
+import { access, mkdir, readFile, writeFile } from "fs/promises"
 import { dirname } from "path"
 import { resolveUsagePath } from "./paths.ts"
 import type { UsageRecord } from "../core/types.ts"
@@ -23,12 +23,11 @@ export async function getUsage(): Promise<UsageRecord> {
   const usagePath = resolveUsagePath()
   
   try {
-    if (await Bun.file(usagePath).exists()) {
-      const content = await Bun.file(usagePath).text()
-      return JSON.parse(content) as UsageRecord
-    }
+    await access(usagePath)
+    const content = await readFile(usagePath, "utf-8")
+    return JSON.parse(content) as UsageRecord
   } catch {
-    // Ignore errors (file doesn't exist or is corrupted), return empty record
+    // File doesn't exist or is corrupted, return empty record
   }
   
   return {}
