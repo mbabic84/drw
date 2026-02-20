@@ -23,10 +23,10 @@ The package includes a standalone binary that works without requiring Bun to be 
 
 ```bash
 # Using npm
-npm install -g drw-directory-jumper
+npm install -g @kn-org/drw
 
 # Using Bun
-bun add -g drw-directory-jumper
+bun add -g @kn-org/drw
 
 # Or download the binary directly from GitHub releases
 ```
@@ -221,9 +221,9 @@ Works in both Bash and Zsh.
 1. Run `drw --install` again to remove the drw section from your `.bashrc` or `.zshrc`, or manually remove the drw section
 2. Uninstall the package:
    ```bash
-   npm uninstall -g drw-directory-jumper
+   npm uninstall -g @kn-org/drw
    # or
-   bun remove -g drw-directory-jumper
+   bun remove -g @kn-org/drw
    ```
 
 ## Troubleshooting
