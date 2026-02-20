@@ -1,3 +1,10 @@
+## [0.6.3](https://github.com/mbabic84/drw/compare/v0.6.2...v0.6.3) (2026-02-20)
+
+
+### Bug Fixes
+
+* update VERSION constant during semantic-release ([84b5e48](https://github.com/mbabic84/drw/commit/84b5e484bc280aa61cb9cd95f219a405a112a567))
+
 ## [0.6.2](https://github.com/mbabic84/drw/compare/v0.6.1...v0.6.2) (2026-02-20)
 
 
