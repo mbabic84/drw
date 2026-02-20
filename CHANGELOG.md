@@ -1,3 +1,10 @@
+## [0.6.4](https://github.com/mbabic84/drw/compare/v0.6.3...v0.6.4) (2026-02-20)
+
+
+### Bug Fixes
+
+* update engines.node to >=18 for broader compatibility ([4a14a26](https://github.com/mbabic84/drw/commit/4a14a2693bca22cbd76886c9b856b3c640b26889))
+
 ## [0.6.3](https://github.com/mbabic84/drw/compare/v0.6.2...v0.6.3) (2026-02-20)
 
 
