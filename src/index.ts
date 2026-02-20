@@ -10,7 +10,7 @@ import {
   handleJump,
 } from "./commands/index.ts"
 
-const VERSION = "0.5.0"
+const VERSION = "0.5.3"
 
 interface ParsedArgs {
   options: Record<string, unknown>
