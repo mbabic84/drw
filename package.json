@@ -3,21 +3,21 @@
   "version": "0.5.3",
   "type": "module",
   "bin": {
-    "drw": "./dist/drw"
+    "drw": "./bin/drw"
   },
   "scripts": {
-    "build": "bun build --target=node --outfile=./dist/drw src/index.ts",
-    "postinstall": "bun build --target=node --outfile=./dist/drw src/index.ts || npx -y bun@latest build --target=node --outfile=./dist/drw src/index.ts",
-    "prepublishOnly": "bun run build",
+    "build": "echo 'No build required - runs from source'",
+    "postinstall": "echo 'No build required - runs from source'",
     "test": "bun test",
-    "test:node": "node --test dist/drw"
+    "test:node": "node --test src/index.ts"
   },
   "engines": {
-    "node": "lts/*"
+    "node": "lts/*",
+    "bun": ">=1.0"
   },
   "files": [
     "src",
-    "dist"
+    "bin"
   ],
   "keywords": [
     "cli",
