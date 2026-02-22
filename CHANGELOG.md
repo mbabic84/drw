@@ -1,3 +1,45 @@
+# [0.7.0](https://github.com/mbabic84/drw/compare/v0.6.4...v0.7.0) (2026-02-20)
+
+
+### Features
+
+* rename npm package to @kn-org/drw ([068b70e](https://github.com/mbabic84/drw/commit/068b70e1e82465fbe1bcca3338c7a920c6422f5b))
+
+## [0.6.4](https://github.com/mbabic84/drw/compare/v0.6.3...v0.6.4) (2026-02-20)
+
+
+### Bug Fixes
+
+* update engines.node to >=18 for broader compatibility ([4a14a26](https://github.com/mbabic84/drw/commit/4a14a2693bca22cbd76886c9b856b3c640b26889))
+
+## [0.6.3](https://github.com/mbabic84/drw/compare/v0.6.2...v0.6.3) (2026-02-20)
+
+
+### Bug Fixes
+
+* update VERSION constant during semantic-release ([84b5e48](https://github.com/mbabic84/drw/commit/84b5e484bc280aa61cb9cd95f219a405a112a567))
+
+## [0.6.2](https://github.com/mbabic84/drw/compare/v0.6.1...v0.6.2) (2026-02-20)
+
+
+### Bug Fixes
+
+* use parent directory of bin for src path ([335c711](https://github.com/mbabic84/drw/commit/335c7112a0a4474b539c5b9e1b6df06133caf66d))
+
+## [0.6.1](https://github.com/mbabic84/drw/compare/v0.6.0...v0.6.1) (2026-02-20)
+
+
+### Bug Fixes
+
+* resolve symlink in wrapper script for global installs ([b2caeb4](https://github.com/mbabic84/drw/commit/b2caeb489d1a6d17801b49513c93b417fe2ad37c))
+
+# [0.6.0](https://github.com/mbabic84/drw/compare/v0.5.3...v0.6.0) (2026-02-20)
+
+
+### Features
+
+* use source-based CLI with runtime detection wrapper ([7971270](https://github.com/mbabic84/drw/commit/7971270ef4d7a1f60de5114b316c7b37ad0bbacf))
+
 ## [0.5.3](https://github.com/mbabic84/drw/compare/v0.5.2...v0.5.3) (2026-02-20)
 
 
