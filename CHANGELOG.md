@@ -1,3 +1,11 @@
+## [0.7.1](https://github.com/mbabic84/drw/compare/v0.7.0...v0.7.1) (2026-04-02)
+
+
+### Bug Fixes
+
+* compile TypeScript for Node.js v24 compatibility ([572f638](https://github.com/mbabic84/drw/commit/572f6386357f54078c3239c56b43d66f47bc9c30))
+* security hardening and type safety improvements ([4164c7d](https://github.com/mbabic84/drw/commit/4164c7dc05aaf823d76492c2039ea8d4b9a24dd0))
+
 # [0.7.0](https://github.com/mbabic84/drw/compare/v0.6.4...v0.7.0) (2026-02-20)
 
 
