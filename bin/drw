@@ -5,11 +5,18 @@
 SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
 PACKAGE_DIR="$(dirname "$SCRIPT_DIR")"
 SRC_PATH="$PACKAGE_DIR/src/index.ts"
+NODE_PATH="$PACKAGE_DIR/dist/node/index.js"
 
 if command -v bun >/dev/null 2>&1; then
   exec bun "$SRC_PATH" "$@"
 elif command -v node >/dev/null 2>&1; then
-  exec node "$SRC_PATH" "$@"
+  if [ -f "$NODE_PATH" ]; then
+    exec node "$NODE_PATH" "$@"
+  else
+    echo "Error: Compiled JavaScript not found at $NODE_PATH" >&2
+    echo "Run 'npm run build' to compile TypeScript source." >&2
+    exit 1
+  fi
 else
   echo "Error: Either bun or node is required to run drw" >&2
   exit 1

@@ -17,7 +17,7 @@ import { scan } from "../core/scanner.ts"
  * 
  * @param path - Path to remove (required)
  */
-export async function handleRemove(path?: string): Promise<void> {
+export async function handleRemove(path?: string | true): Promise<void> {
   if (!path || path === true) {
     console.error("Error: Please specify a folder path to remove")
     process.exit(1)

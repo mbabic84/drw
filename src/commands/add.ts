@@ -18,7 +18,7 @@ import { getConfig, saveConfig, getConfigPath } from "../config/index.ts"
  * 
  * @param path - Path to add (optional, defaults to cwd)
  */
-export async function handleAdd(path?: string): Promise<void> {
+export async function handleAdd(path?: string | true): Promise<void> {
   const addPath = path === undefined || path === true ? cwd() : path
 
   // Validate path exists

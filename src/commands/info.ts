@@ -18,7 +18,7 @@ import { scan } from "../core/scanner.ts"
  * 
  * @param name - Shortcut name to look up (required)
  */
-export async function handleInfo(name?: string): Promise<void> {
+export async function handleInfo(name?: string | true): Promise<void> {
   if (!name || name === true) {
     console.error("Error: Please specify a shortcut name")
     process.exit(1)

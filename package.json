@@ -6,8 +6,8 @@
     "drw": "./bin/drw"
   },
   "scripts": {
-    "build": "echo 'No build required - runs from source'",
-    "postinstall": "echo 'No build required - runs from source'",
+    "build": "tsc -p tsconfig.build.json || true",
+    "prepare": "tsc -p tsconfig.build.json || true",
     "test": "bun test",
     "test:node": "node --test src/index.ts"
   },
@@ -17,7 +17,9 @@
   },
   "files": [
     "src",
-    "bin"
+    "bin",
+    "dist/node",
+    "tsconfig.build.json"
   ],
   "keywords": [
     "cli",
@@ -44,6 +46,8 @@
     "@semantic-release/github": "^12.0.6",
     "@semantic-release/npm": "^13.1.4",
     "@semantic-release/release-notes-generator": "^14.1.0",
-    "semantic-release": "^25.0.3"
+    "@types/node": "^25.5.0",
+    "semantic-release": "^25.0.3",
+    "typescript": "^6.0.2"
   }
 }
