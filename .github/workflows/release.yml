@@ -7,8 +7,6 @@ on:
 
 permissions:
   contents: write
-  issues: write
-  pull-requests: write
   id-token: write
 
 jobs:
@@ -29,7 +27,14 @@ jobs:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
       - name: Add GitHub to known hosts
-        run: ssh-keyscan github.com >> ~/.ssh/known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          # Verify GitHub's SSH host key fingerprint
+          ssh-keygen -lf <(ssh-keyscan github.com 2>/dev/null | head -1) | grep -q "SHA256:uNiVztksCsDhcc0u9e8BujQXVUpKZIDTMczCvj3tD2s" || {
+            echo "ERROR: GitHub SSH host key fingerprint mismatch!"
+            exit 1
+          }
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2

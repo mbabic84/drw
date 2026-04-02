@@ -10,6 +10,7 @@ coverage/
 .kilocode/
 opencode.json
 AGENTS.md
+telemetry-id
 # Deploy keys
 deploy_key
 deploy_key.pub

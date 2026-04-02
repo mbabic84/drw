@@ -8,7 +8,7 @@
  */
 
 import { mkdir, readFile, writeFile } from "fs/promises"
-import { dirname } from "path"
+import { dirname, isAbsolute, resolve } from "path"
 import { access } from "fs/promises"
 import { resolveConfigPaths, getConfigPath } from "./paths.ts"
 import type { Config } from "../core/types.ts"
@@ -64,6 +64,17 @@ async function loadConfigFile(path: string): Promise<Config> {
     throw new Error('Invalid config: "folders" must be an array')
   }
   
+  // Validate each folder entry
+  for (let i = 0; i < config.folders.length; i++) {
+    const folder = config.folders[i]
+    if (typeof folder !== "string") {
+      throw new Error(`Invalid config: "folders[${i}]" must be a string`)
+    }
+    if (!isAbsolute(folder)) {
+      throw new Error(`Invalid config: "folders[${i}]" must be an absolute path: ${folder}`)
+    }
+  }
+  
   return config
 }
 
@@ -111,8 +122,9 @@ export async function saveConfig(config: Config): Promise<void> {
  */
 export async function validatePaths(folders: string[]): Promise<void> {
   for (const folder of folders) {
+    const resolvedPath = resolve(folder)
     try {
-      await access(folder)
+      await access(resolvedPath)
     } catch {
       throw new Error(`Configured folder does not exist: ${folder}`)
     }

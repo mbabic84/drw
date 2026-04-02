@@ -9,7 +9,7 @@
  */
 
 import { readdir } from "fs/promises"
-import { join } from "path"
+import { join, resolve, normalize } from "path"
 import type { ScanResult } from "./types.ts"
 
 /**
@@ -78,7 +78,14 @@ function processDirectoryEntry(
   shortcuts: Map<string, string[]>,
   duplicates: string[]
 ): void {
-  const fullPath = join(basePath, name)
+  const fullPath = normalize(join(basePath, name))
+  const resolvedBase = resolve(basePath)
+  const resolvedPath = resolve(fullPath)
+  
+  // Security: ensure resolved path stays within base directory
+  if (!resolvedPath.startsWith(resolvedBase + "/") && resolvedPath !== resolvedBase) {
+    return // Skip entries that escape the base directory
+  }
   
   if (shortcuts.has(name)) {
     // Duplicate shortcut found - add to existing array
